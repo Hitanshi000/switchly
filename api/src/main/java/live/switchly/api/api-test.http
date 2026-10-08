@@ -1,0 +1,121 @@
+### ============================================
+### SWITCHLY - FEATURE FLAG TESTING
+### ============================================
+
+### Your actual Flag ID:
+### 336f2b1d-081b-4821-ba19-1bcc01324f76
+
+
+### ============================================
+### 1. GET FLAG BY ID
+### ============================================
+
+GET http://localhost:8080/api/v1/flags/336f2b1d-081b-4821-ba19-1bcc01324f76
+
+###
+### Expected response:
+###
+### HTTP/1.1 200
+###
+### {
+###   "id": "336f2b1d-081b-4821-ba19-1bcc01324f76",
+###   "organizationId": "b1d76864-efa9-4831-9a72-54b52944c438",
+###   "projectId": "fa5e561d-eab0-4ee1-8ed9-e96a12a828e5",
+###   "key": "new-checkout",
+###   "name": "New Checkout",
+###   "enabled": false
+### }
+
+
+### ============================================
+### 2. TURN FLAG ON
+### ============================================
+
+PUT http://localhost:8080/api/v1/flags/336f2b1d-081b-4821-ba19-1bcc01324f76/state
+Content-Type: application/json
+
+{
+  "enabled": true
+}
+
+###
+### Expected response:
+###
+### HTTP/1.1 200
+###
+### {
+###   "id": "336f2b1d-081b-4821-ba19-1bcc01324f76",
+###   "organizationId": "b1d76864-efa9-4831-9a72-54b52944c438",
+###   "projectId": "fa5e561d-eab0-4ee1-8ed9-e96a12a828e5",
+###   "key": "new-checkout",
+###   "name": "New Checkout",
+###   "enabled": true
+### }
+
+
+### ============================================
+### 3. VERIFY FLAG IS STILL ON
+### ============================================
+
+GET http://localhost:8080/api/v1/flags/336f2b1d-081b-4821-ba19-1bcc01324f76
+
+###
+### Expected response:
+###
+### HTTP/1.1 200
+###
+### {
+###   "id": "336f2b1d-081b-4821-ba19-1bcc01324f76",
+###   "organizationId": "b1d76864-efa9-4831-9a72-54b52944c438",
+###   "projectId": "fa5e561d-eab0-4ee1-8ed9-e96a12a828e5",
+###   "key": "new-checkout",
+###   "name": "New Checkout",
+###   "enabled": true
+### }
+
+
+### ============================================
+### 4. TURN FLAG OFF
+### ============================================
+
+PUT http://localhost:8080/api/v1/flags/336f2b1d-081b-4821-ba19-1bcc01324f76/state
+Content-Type: application/json
+
+{
+  "enabled": false
+}
+
+###
+### Expected response:
+###
+### HTTP/1.1 200
+###
+### {
+###   "id": "336f2b1d-081b-4821-ba19-1bcc01324f76",
+###   "organizationId": "b1d76864-efa9-4831-9a72-54b52944c438",
+###   "projectId": "fa5e561d-eab0-4ee1-8ed9-e96a12a828e5",
+###   "key": "new-checkout",
+###   "name": "New Checkout",
+###   "enabled": false
+### }
+
+
+### ============================================
+### 5. VERIFY FLAG IS OFF
+### ============================================
+
+GET http://localhost:8080/api/v1/flags/336f2b1d-081b-4821-ba19-1bcc01324f76
+
+###
+### Expected response:
+###
+### HTTP/1.1 200
+###
+### {
+###   "id": "336f2b1d-081b-4821-ba19-1bcc01324f76",
+###   "organizationId": "b1d76864-efa9-4831-9a72-54b52944c438",
+###   "projectId": "fa5e561d-eab0-4ee1-8ed9-e96a12a828e5",
+###   "key": "new-checkout",
+###   "name": "New Checkout",
+###   "enabled": false
+### }
